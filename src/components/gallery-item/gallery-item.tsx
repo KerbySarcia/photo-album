@@ -8,6 +8,7 @@ type Props = {
   height: number;
 };
 
+// GalleryItem component
 const GalleryItem = ({ media, id, height }: Props) => {
   return (
     <div
