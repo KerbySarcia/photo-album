@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import "./gallery-item.css";
+import Image from "../image/image";
 
 type Props = {
   id: number;
@@ -8,14 +9,19 @@ type Props = {
   height: number;
 };
 
-// GalleryItem component
-const GalleryItem = ({ media, id, height }: Props) => {
+const GalleryItem = ({ media, id, height, width }: Props) => {
+  const optimizedHeight = (372 / height) * width;
   return (
     <div
       className="galleryItem"
       style={{ gridRowEnd: `span ${Math.ceil(height / 100)}` }}
     >
-      <img src={media} alt={`${id}-image`} />
+      <Image
+        path={media}
+        alt={id.toString()}
+        height={optimizedHeight}
+        width={372}
+      />
       <Link to={`/pin/${id}`} className="overlay" />
       <button className="saveButton">Save</button>
       <div className="overlayIcons">

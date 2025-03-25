@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import "./left-bar.css";
 
 const LeftBar = () => {
@@ -10,9 +11,9 @@ const LeftBar = () => {
         <a href="/" className="menuIcon">
           <img src="/general/home.svg" alt="" />
         </a>
-        <a href="/" className="menuIcon">
+        <Link to="/create" className="menuIcon">
           <img src="/general/create.svg" alt="" />
-        </a>
+        </Link>
         <a href="/" className="menuIcon">
           <img src="/general/updates.svg" alt="" />
         </a>
