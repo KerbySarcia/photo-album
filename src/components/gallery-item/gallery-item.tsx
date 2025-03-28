@@ -1,15 +1,9 @@
 import { Link } from "react-router";
 import "./gallery-item.css";
 import Image from "../image/image";
+import IPin from "../../interface/pin.interface";
 
-type Props = {
-  id: number;
-  media: string;
-  width: number;
-  height: number;
-};
-
-const GalleryItem = ({ media, id, height, width }: Props) => {
+const GalleryItem = ({ media, _id, height, width }: IPin) => {
   const optimizedHeight = (372 / height) * width;
   return (
     <div
@@ -18,11 +12,11 @@ const GalleryItem = ({ media, id, height, width }: Props) => {
     >
       <Image
         path={media}
-        alt={id.toString()}
+        alt={_id.toString()}
         height={optimizedHeight}
         width={372}
       />
-      <Link to={`/pin/${id}`} className="overlay" />
+      <Link to={`/pin/${_id}`} className="overlay" />
       <button className="saveButton">Save</button>
       <div className="overlayIcons">
         <button>

@@ -2,7 +2,11 @@ import EmojiPicker from "emoji-picker-react";
 import "./comments.css";
 import { useState } from "react";
 
-const Comments = () => {
+type CommentsProps = {
+  id: string;
+};
+
+const Comments = ({ id }: CommentsProps) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="comments">

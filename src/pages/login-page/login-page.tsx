@@ -1,9 +1,37 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import "./login-page.css";
+import { useNavigate } from "react-router";
+import useAuthStore from "../../utils/auth-store";
+import apiRequest from "../../utils/api";
 
 const LoginPage = () => {
   const [isRegister, setIsRegister] = useState(false);
   const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+
+  const { setCurrentUser } = useAuthStore();
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+
+    const data = Object.fromEntries(formData);
+
+    try {
+      const res = await apiRequest.post(
+        `/users/auth/${isRegister ? "register" : "login"}`,
+        data
+      );
+
+      setCurrentUser(res.data);
+
+      navigate("/");
+    } catch (err) {
+      // @ts-expect-errorignore
+      setError(err.response.data.message);
+    }
+  };
 
   return (
     <div className="loginPage">
@@ -11,7 +39,7 @@ const LoginPage = () => {
         <img src="/general/logo.png" alt="" />
         <h1>{isRegister ? "Create an Account" : "Login to your account"}</h1>
         {isRegister ? (
-          <form action="" key="register-form">
+          <form onSubmit={handleSubmit} key="register-form">
             <div className="formGroup">
               <label htmlFor="username">Username</label>
               <input
@@ -59,7 +87,7 @@ const LoginPage = () => {
             {error && <p className="error">{error}</p>}
           </form>
         ) : (
-          <form action="" key="login-form">
+          <form onSubmit={handleSubmit} key="login-form">
             <div className="formGroup">
               <label htmlFor="email">Email</label>
               <input

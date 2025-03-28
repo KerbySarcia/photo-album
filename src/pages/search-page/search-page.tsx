@@ -1,7 +1,12 @@
+import { useSearchParams } from "react-router";
 import Gallery from "../../components/gallery/gallery";
 
 const SearchPage = () => {
-  return <Gallery />;
+  const [searchParams] = useSearchParams();
+
+  const search = searchParams.get("search");
+  const boardId = searchParams.get("boardId");
+  return <Gallery search={search} boardId={boardId} userId={null} />;
 };
 
 export default SearchPage;

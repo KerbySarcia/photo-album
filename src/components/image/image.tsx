@@ -12,7 +12,8 @@ const Image = ({ path, alt, width, height, className }: Props) => {
   return (
     <IKImage
       urlEndpoint={import.meta.env.VITE_URL_IK_ENDPOINT}
-      path={path}
+      // path={path}
+      src={path}
       transformation={[
         {
           height: height,
