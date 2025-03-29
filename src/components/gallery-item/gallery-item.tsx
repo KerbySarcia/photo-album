@@ -11,7 +11,7 @@ const GalleryItem = ({ media, _id, height, width }: IPin) => {
       style={{ gridRowEnd: `span ${Math.ceil(height / 100)}` }}
     >
       <Image
-        path={media}
+        src={media}
         alt={_id.toString()}
         height={optimizedHeight}
         width={372}

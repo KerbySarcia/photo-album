@@ -14,14 +14,13 @@
 }
 
 .postImage {
-  flex: 1;
   background-color: #c0a68c;
 }
 
 .postImage img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .postDetails {

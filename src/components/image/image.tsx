@@ -1,19 +1,21 @@
 import { IKImage } from "imagekitio-react";
 
 type Props = {
-  path: string;
+  path?: string;
   alt: string;
   width?: number;
   height?: number;
   className?: string;
+  src?: string;
 };
 
-const Image = ({ path, alt, width, height, className }: Props) => {
+const Image = ({ path, src, alt, width, height, className }: Props) => {
   return (
+    // @ts-expect-errorignore
     <IKImage
       urlEndpoint={import.meta.env.VITE_URL_IK_ENDPOINT}
-      // path={path}
-      src={path}
+      path={path}
+      src={src}
       transformation={[
         {
           height: height,

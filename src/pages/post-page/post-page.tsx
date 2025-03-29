@@ -20,7 +20,7 @@ const PostPage = () => {
   if (error) return "An error has occurred: " + error.message;
 
   if (!data) return "Pin not found!";
-
+  console.log("data => ", data);
   return (
     <div className="postPage">
       <Link to="/">
@@ -63,12 +63,12 @@ const PostPage = () => {
       </Link>
       <div className="postContainer">
         <div className="postImg">
-          <Image path={data.media} alt="" width={736} />
+          <Image src={data.media} alt="" width={736} />
         </div>
         <div className="postDetails">
           <PostInteractions postId={id as string} />
           <Link to={`/${data.user.username}`} className="postUser">
-            <Image path={data.user.img || "/general/noAvatar.png"} alt="" />
+            <Image src={data.user.img || "/general/noAvatar.png"} alt="" />
             <span>{data.user.displayName}</span>
           </Link>
           <Comments id={data._id} />

@@ -28,9 +28,9 @@ const fetchPins = async ({
 };
 
 type GalleryProps = {
-  search: string | null;
-  userId: string | null;
-  boardId: string | null;
+  search?: string | null;
+  userId?: string | null;
+  boardId?: string | null;
 };
 
 const Gallery = ({ search = "", userId = "", boardId = "" }: GalleryProps) => {
