@@ -29,7 +29,7 @@ const Collections = ({ userId }: CollectionsProps) => {
           className="collection"
           key={board._id}
         >
-          <Image path={board.firstPin.media} alt="" />
+          <Image src={board.firstPin.media} alt="" />
           <div className="collectionInfo">
             <h1>{board.title}</h1>
             <span>

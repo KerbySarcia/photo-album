@@ -6,6 +6,7 @@ import apiRequest from "../../utils/api";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 import { User } from "../../interface/user.interface";
+import FollowButton from "./follow-button";
 
 const ProfilePage = () => {
   const [type, setType] = useState("saved");
@@ -36,7 +37,10 @@ const ProfilePage = () => {
         <img src="/general/share.svg" alt="" />
         <div className="profileButtons">
           <button>Message</button>
-          <button>Follow</button>
+          <FollowButton
+            isFollowing={data.isFollowing}
+            username={data.username}
+          />
         </div>
         <img src="/general/more.svg" alt="" />
       </div>
