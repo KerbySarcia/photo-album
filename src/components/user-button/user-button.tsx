@@ -1,11 +1,24 @@
 import { useState } from "react";
 import "./user-button.css";
+import useAuthStore from "../../utils/auth-store";
+import { Link, useNavigate } from "react-router";
+import apiRequest from "../../utils/api";
 
 const UserButton = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
-  // Temp
-  const currentUser = true;
+  const { currentUser, removeCurrentUser } = useAuthStore();
+
+  const handleLogout = async () => {
+    try {
+      await apiRequest.post("/users/auth/logout", {});
+      removeCurrentUser();
+      navigate("/auth");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return currentUser ? (
     <div className="userButton">
@@ -18,14 +31,18 @@ const UserButton = () => {
       />
       {isOpen ? (
         <div className="userOptions">
-          <div className="userOption">Profile</div>
+          <Link to={`/profile/${currentUser.username}`} className="userOption">
+            Profile
+          </Link>
           <div className="userOption">Setting</div>
-          <div className="userOption">Logout</div>
+          <div className="userOption" onClick={handleLogout}>
+            Logout
+          </div>
         </div>
       ) : null}
     </div>
   ) : (
-    <a href="/" className="loginLink">
+    <a href="/login" className="loginLink">
       Login / Sign Up
     </a>
   );
